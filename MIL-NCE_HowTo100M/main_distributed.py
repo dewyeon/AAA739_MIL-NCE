@@ -223,16 +223,22 @@ def train(train_loader, model, criterion, optimizer, scheduler, epoch, dataset, 
             s = time.time()
 
 def TrainOneBatch(model, opt, scheduler, data, loss_fun, args):
+    '''
+    Train Function
+    '''
+    ### (1) get video and text data
     video = data["video"].float().cuda(args.gpu, non_blocking=args.pin_memory)
     text = data["text"].cuda(args.gpu, non_blocking=args.pin_memory)
     text = text.view(-1, text.shape[-1])
     video = video / 255.0
     opt.zero_grad()
+    ### (2) make video and text embeddings
     with torch.set_grad_enabled(True):
         video_embd, text_embd = model(video, text)
         if args.distributed:
             video_embd = allgather(video_embd, args)
             text_embd = allgather(text_embd, args)
+        ### (3) calculate loss using the loss function: MIL-NCE loss
         loss = loss_fun(video_embd, text_embd)
     loss.backward()
     opt.step()
