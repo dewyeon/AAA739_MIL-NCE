@@ -16,6 +16,9 @@ from sklearn.svm import LinearSVC
 
 
 def main():
+    '''
+    evaluation code for downstream (action recognition) task on HMDB dataset
+    '''
     args = get_args()
     assert args.eval_video_root != ''
     checkpoint_path = args.pretrain_cnn_path
