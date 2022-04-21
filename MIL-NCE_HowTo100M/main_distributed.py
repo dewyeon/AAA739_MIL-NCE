@@ -225,6 +225,11 @@ def train(train_loader, model, criterion, optimizer, scheduler, epoch, dataset, 
 def TrainOneBatch(model, opt, scheduler, data, loss_fun, args):
     '''
     Train Function
+    -
+    1. get video and text data - gathered using loader and handed to this function
+    2. make each embeddings
+    3. calculate loss using the loss function
+    4. backprop and train
     '''
     ### (1) get video and text data
     video = data["video"].float().cuda(args.gpu, non_blocking=args.pin_memory)

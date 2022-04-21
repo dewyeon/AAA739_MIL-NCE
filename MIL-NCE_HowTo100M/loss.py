@@ -13,6 +13,8 @@ class MILNCELoss(th.nn.Module):
         video_embd <- f(x)
         text_embd <- g(y)
         x <- dot product of the two embeddings
+        calculate the numerator and demoninator terms of the loss function
+        and subtract (division -> subtraction in log)
         '''
         x = th.matmul(video_embd, text_embd.t())
         x = x.view(video_embd.shape[0], video_embd.shape[0], -1)
