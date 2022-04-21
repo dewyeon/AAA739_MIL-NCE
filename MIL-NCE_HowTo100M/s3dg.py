@@ -1,4 +1,5 @@
-"""Contains the definition for Gated Separable 3D network (S3D-G).
+"""
+Contains the definition for Gated Separable 3D network (S3D-G).
 """
 
 import torch as th

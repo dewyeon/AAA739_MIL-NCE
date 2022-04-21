@@ -5,6 +5,13 @@ from __future__ import print_function
 
 import numpy as np
 
+'''
+metrics for evaluation
+R1: recall at 1
+R5: recall at 5
+R10: recall at 10
+MR: median recall
+'''
 
 def compute_metrics(x):
     sx = np.sort(-x, axis=1)

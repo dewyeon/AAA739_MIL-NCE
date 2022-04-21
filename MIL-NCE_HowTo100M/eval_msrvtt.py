@@ -14,6 +14,9 @@ import numpy as np
 
 
 def main():
+    '''
+    evaluation code for downstream (retrieval) task on msrvtt dataset
+    '''
     args = get_args()
     assert args.eval_video_root != ''
     checkpoint_path = args.pretrain_cnn_path
